@@ -14,7 +14,7 @@ public class Book implements Serializable {
         this.barcode = barcode;
         this.name = name;
         this.author = author;
-        this.setPrice(price);
+        this.setPrice(price);     // using setter so validation works
         this.quantity = quantity;
     }
 
@@ -46,6 +46,19 @@ public class Book implements Serializable {
         this.author = author;
     }
 
+    public double getPrice() {
+        return price;
+    }
+
+    // Added a small validation check (minute improvement)
+    public void setPrice(double price) {
+        if (price < 0) {
+            this.price = 0;
+        } else {
+            this.price = price;
+        }
+    }
+
     public int getQuantity() {
         return quantity;
     }
@@ -54,12 +67,15 @@ public class Book implements Serializable {
         this.quantity = quantity;
     }
 
-    public double getPrice() {
-        return price;
+    // Added a useful toString() method
+    @Override
+    public String toString() {
+        return "Book {" +
+                "barcode='" + barcode + '\'' +
+                ", name='" + name + '\'' +
+                ", author='" + author + '\'' +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                '}';
     }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
 }
